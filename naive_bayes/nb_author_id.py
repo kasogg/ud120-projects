@@ -24,10 +24,14 @@ features_train, features_test, labels_train, labels_test = preprocess()
 ### your code goes here ###
 
 gnb = GaussianNB()
+t0 = time()
 gnb.fit(features_train, labels_train)
-y_pred = gnb.predict(features_test)
+print "training time:", round(time()-t0, 3), "s"
+
+t0 = time()
+print gnb.predict(features_test)
+print "predicting time:", round(time()-t0, 3), "s"
 
 print gnb.score(features_test, labels_test)
-print y_pred
 
 #########################################################
