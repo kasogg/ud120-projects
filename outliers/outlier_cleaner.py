@@ -1,5 +1,6 @@
 #!/usr/bin/python
 
+import numpy as np
 
 def outlierCleaner(predictions, ages, net_worths):
     """
@@ -13,8 +14,13 @@ def outlierCleaner(predictions, ages, net_worths):
     
     cleaned_data = []
 
+
     ### your code goes here
 
+    combined_data = np.hstack([ages, net_worths, predictions - net_worths])
+    index = np.lexsort(combined_data.T)
     
+    cleaned_data = combined_data[index[:-9]]
+
     return cleaned_data
 
